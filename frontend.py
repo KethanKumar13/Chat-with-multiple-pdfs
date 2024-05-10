@@ -1,4 +1,5 @@
 import streamlit as st
+from backend import comp_process
 
 
 
@@ -16,7 +17,10 @@ def frontend():
         pdfs = st.file_uploader("Upload PDF files", type="pdf", accept_multiple_files=True)
         st.button('Process')
 
-    
+    if pdfs and api_key is not None:
+        if question:
+            ans = comp_process(apikey=api_key, pdfs=pdfs, question=question)
+            st.write(ans)
 
 
 if __name__ == "__main__":
